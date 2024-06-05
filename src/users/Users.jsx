@@ -1,7 +1,57 @@
 import { Link, useNavigate } from "react-router-dom";
 import style from "../style.module.css";
+import Swal from "sweetalert2";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 const Users = () => {
+  const [user, setUser] = useState([]);
+  function handleDelete(id) {
+    Swal.fire({
+      title: "آیا مطمئنی ",
+      text: `حساب کاربری ${id} به فنا رفته است و حذف  کرده اید`,
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "بله میخواهم حذف شود",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axios({
+          method: "delete",
+          url: `https://jsonplaceholder.typicode.com/users/${id}`,
+        }).then((res) => {
+          if (res.status === 200) {
+            const newUser = user.filter((u) => u.id != id);
+            setUser(newUser);
+            Swal.fire({
+              title: "به فنا رفتید!",
+              text: "حساب  کاربری شما به فنا رفته است ",
+              icon: "success",
+            });
+          } else {
+            Swal.fire({
+              title: "خطا",
+              text: "see this shitty error",
+              icon: "error",
+            });
+          }
+        });
+      } else {
+        Swal.fire({
+          title: "خدا رحم کرد ",
+          text: "حساب کاربری  حذف  نشده است ",
+          icon: "error",
+        });
+      }
+    });
+  }
+
+  useEffect(() => {
+    axios.get("https://jsonplaceholder.typicode.com/users").then((res) => {
+      setUser(res.data);
+    });
+  }, []);
   const navigate = useNavigate();
   return (
     <div className={`${style.item_content} mt-5 p-4 container-fluid`}>
@@ -33,21 +83,28 @@ const Users = () => {
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>1</td>
-            <td>qasem</td>
-            <td>qasemB</td>
-            <td>mahdicmptr@gmail.com</td>
-            <td>
-              <i
-                className="fas fa-edit text-warning mx-2 pointer"
-                onClick={() => {
-                  navigate("/users/addUser/2");
-                }}
-              ></i>
-              <i className="fas fa-trash text-danger mx-2 pointer"></i>
-            </td>
-          </tr>
+          {user.map((u) => {
+            return (
+              <tr key={u.id}>
+                <td>{u.id}</td>
+                <td>{u.name}</td>
+                <td>{u.username}</td>
+                <td>{u.email}</td>
+                <td>
+                  <i
+                    className="fas fa-edit text-warning mx-2 pointer"
+                    onClick={() => {
+                      navigate("/users/addUser/2");
+                    }}
+                  ></i>
+                  <i
+                    className="fas fa-trash text-danger mx-2 pointer"
+                    onClick={() => handleDelete(u.id)}
+                  ></i>
+                </td>
+              </tr>
+            );
+          })}
         </tbody>
       </table>
     </div>
