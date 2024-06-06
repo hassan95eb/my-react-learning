@@ -37,7 +37,7 @@ const Content = () => {
         <Route path="/posts" element={<Posts />} />
         <Route path="/gallery" element={<Gallery />} />
         <Route path="/todos" element={<Todos />} />
-        <Route path="*" element={<Users />} />
+        {/* <Route path="*" element={<Users />} /> */}
       </Routes>
     </div>
   );
