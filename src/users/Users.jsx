@@ -32,7 +32,7 @@ const Users = () => {
           } else {
             Swal.fire({
               title: "خطا",
-              text: "see this shitty error",
+              text: "see this shitty error test test",
               icon: "error",
             });
           }
