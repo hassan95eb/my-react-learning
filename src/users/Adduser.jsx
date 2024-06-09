@@ -1,4 +1,4 @@
-import { useParams, Outlet } from "react-router";
+import { useParams, Outlet, useNavigate } from "react-router";
 import "./adduser.css";
 import { useState, useEffect } from "react";
 // import axios from "axios";
@@ -7,6 +7,7 @@ import { jpAxios } from "../jpAxios";
 import { servicePostUser, servicePutUser } from "../services/addUser";
 export default function Adduser() {
   const { userId } = useParams();
+  const navigate = useNavigate();
   const [data, setData] = useState({
     name: "",
     username: "",
@@ -133,7 +134,13 @@ export default function Adduser() {
           </div>
         </div>
         <div className="text-start submit-section">
-          <button className="submit-btn-cancel ms-2" type="submit">
+          <button
+            className="submit-btn-cancel ms-2"
+            onClick={(e) => {
+              navigate(-1);
+              e.preventDefault();
+            }}
+          >
             بازگشت
           </button>
           <button className="submit-btn " type="submit">
