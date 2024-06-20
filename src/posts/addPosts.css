@@ -1,0 +1,26 @@
+.form-post {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.post-from {
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 0 10px 3px #b7e9e4;
+  background-color: #fff;
+}
+@media (max-width) {
+  .post-from {
+    width: 90%;
+  }
+}
+input,
+label,
+textarea و select {
+  width: 100%;
+}

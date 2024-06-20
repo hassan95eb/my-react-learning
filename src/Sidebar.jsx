@@ -13,7 +13,7 @@ const Sidebar = () => {
     >
       <ul className={`${style.sidebar_list} m-0 p-0`}>
         <li className={style.sidebar_avatar}>
-          <img src="/assets/images/user2.jpg" alt="" />
+          <img src="" alt="" />
         </li>
         <li>
           <Link to="/users">کاربران</Link>

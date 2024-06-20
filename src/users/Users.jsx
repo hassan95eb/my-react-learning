@@ -6,10 +6,11 @@ import axios from "axios";
 
 const Users = () => {
   const [user, setUser] = useState([]);
+  const [mainUser, setMainuser] = useState();
   function handleDelete(id) {
     Swal.fire({
       title: "آیا مطمئنی ",
-      text: `حساب کاربری ${id} به فنا رفته است و حذف  کرده اید`,
+      text: `آیا قصد دارید که کاربر  ${id} را به فنا دهید؟`,
       icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
@@ -50,9 +51,13 @@ const Users = () => {
   useEffect(() => {
     axios.get("https://jsonplaceholder.typicode.com/users").then((res) => {
       setUser(res.data);
+      setMainuser(res.data);
     });
   }, []);
   const navigate = useNavigate();
+  const handleSearch = (e) => {
+    setUser(mainUser.filter((u) => u.name.includes(e.target.value)));
+  };
   return (
     <div className={`${style.item_content} mt-5 p-4 container-fluid`}>
       <h4 className="text-center">مدیریت کاربران</h4>
@@ -62,6 +67,7 @@ const Users = () => {
             type="text"
             className="form-control shadow"
             placeholder="جستجو"
+            onChange={handleSearch}
           />
         </div>
         <div className="col-2 text-start px-0">
@@ -94,7 +100,7 @@ const Users = () => {
                   <i
                     className="fas fa-edit text-warning mx-2 pointer"
                     onClick={() => {
-                      navigate("/users/addUser/2");
+                      navigate(`/users/addUser/${u.id}`);
                     }}
                   ></i>
                   <i
