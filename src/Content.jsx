@@ -9,6 +9,7 @@ import { Route, Routes } from "react-router";
 import Adduser from "./users/Adduser";
 import EditPm from "./users/EditPm";
 import Addpost from "./posts/Addpost";
+import Signin from "./Auth/Signin";
 
 const Content = () => {
   const { showMenu, setShowMenu } = useContext(MainContext);
@@ -45,6 +46,7 @@ const Content = () => {
         {/* Post Routes*/}
         <Route path="/gallery" element={<Gallery />} />
         <Route path="/todos" element={<Todos />} />
+        <Route path="/signin" element={<Signin />} />
         {/* <Route path="*" element={<Users />} /> */}
       </Routes>
     </div>

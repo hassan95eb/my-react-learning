@@ -27,6 +27,9 @@ const Sidebar = () => {
         <li>
           <Link to="/todos">کارها</Link>
         </li>
+        <li>
+          <Link to="/signin">فرم ورود</Link>
+        </li>
       </ul>
     </div>
   );
