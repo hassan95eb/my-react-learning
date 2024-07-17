@@ -1,4 +1,4 @@
-import { ErrorMessage, FastField, FieldArray, Form, Formik } from "formik";
+import { FieldArray, Form, Formik } from "formik";
 import * as yup from "yup";
 import "./style.css";
 import FavoriteField from "./FavoriteField";
@@ -82,7 +82,7 @@ export default function Signin() {
               label="E-mail"
               control="input"
             />
-            <div className="mb-3">
+            {/* <div className="mb-3">
               <label htmlFor="exampleInputEmail1" className="form-label">
                 Email Address
               </label>
@@ -100,9 +100,15 @@ export default function Signin() {
                   );
                 }}
               </ErrorMessage>
-            </div>
+            </div> */}
             {/* password */}
-            <div className="mb-3">
+            <FormTemplate
+              name="password"
+              type="password"
+              label="Password"
+              control="input"
+            />
+            {/* <div className="mb-3">
               <label htmlFor="exampleInputPassword1" className="form-label">
                 Password
               </label>
@@ -125,9 +131,15 @@ export default function Signin() {
                   );
                 }}
               </FastField>
-            </div>
+            </div> */}
             {/* city */}
-            <div className="my-2 ">
+            <FormTemplate
+              name="address.city"
+              type="text"
+              label="City"
+              control="input"
+            />
+            {/* <div className="my-2 ">
               <label htmlFor="exampleInputCity" className="form-label">
                 City
               </label>
@@ -145,9 +157,15 @@ export default function Signin() {
                   );
                 }}
               </ErrorMessage>
-            </div>
+            </div> */}
             {/* postal code */}
-            <div className="my-2 ">
+            <FormTemplate
+              name="address.postalcode"
+              type="text"
+              label="Postal code"
+              control="input"
+            />
+            {/* <div className="my-2 ">
               <label htmlFor="exampleInputPostalCode" className="form-label">
                 Postal code
               </label>
@@ -165,9 +183,15 @@ export default function Signin() {
                   );
                 }}
               </ErrorMessage>
-            </div>
+            </div> */}
             {/* Mobile*/}
-            <div className="my-2 ">
+            <FormTemplate
+              name="phone[0]"
+              type="text"
+              label="Mobile"
+              control="input"
+            />
+            {/* <div className="my-2 ">
               <label htmlFor="exampleInputMobile" className="form-label">
                 Mobile
               </label>
@@ -185,9 +209,15 @@ export default function Signin() {
                   );
                 }}
               </ErrorMessage>
-            </div>
+            </div> */}
             {/* telephone*/}
-            <div className="my-2 ">
+            <FormTemplate
+              name="phone[1]"
+              type="text"
+              label="TelePhone"
+              control="input"
+            />
+            {/*<div className="my-2 ">
               <label htmlFor="exampleInputTelePhone" className="form-label">
                 TelePhone
               </label>
@@ -205,7 +235,7 @@ export default function Signin() {
                   );
                 }}
               </ErrorMessage>
-            </div>
+            </div> */}
             {/* favorite */}
             <div className="my-2">
               <FieldArray type="text" className="form-control" name="favorite">
